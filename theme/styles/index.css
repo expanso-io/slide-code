@@ -1,0 +1,932 @@
+/* Expanso Theme - Global Styles */
+
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+/* CSS Variables for Design System - Official Expanso Colors */
+:root {
+  /* Brand Colors */
+  --expanso-primary: #6823CD;        /* violet-700 - Primary brand color */
+  --expanso-primary-hover: #501E99;  /* violet-800 - Hover state */
+  --expanso-primary-light: #9259ED;  /* violet-500 - Lighter variant for dark bg */
+  --expanso-primary-lighter: #883FFD; /* violet-600 - Focus/accent */
+  --expanso-primary-subtle: #FAF6FF; /* violet-50 - Subtle backgrounds */
+  
+  /* Backgrounds */
+  --expanso-bg-dark: #000000;        /* grey-900 - Dark mode primary */
+  --expanso-bg-page: #FCFCFC;        /* grey-50 - Light mode page */
+  --expanso-bg-card: #FFFFFF;        /* White - Cards/panels */
+  --expanso-bg-subtle: #F6F6F6;      /* grey-100 - Subtle backgrounds */
+  
+  /* Text Colors */
+  --expanso-text-primary: #000000;   /* grey-900 - Headings on light */
+  --expanso-text-heading: #454545;   /* grey-800 - Alternative headings */
+  --expanso-text-body: #727272;      /* grey-700 - Body text */
+  --expanso-text-secondary: #9F9F9F; /* grey-600 - Secondary text */
+  --expanso-text-tertiary: #CFCFCF;  /* grey-500 - Placeholder/disabled */
+  --expanso-text-inverse: #FFFFFF;   /* White - Text on dark backgrounds */
+  --expanso-text-inverse-soft: #FCFCFC; /* grey-50 - Soft text on dark */
+  
+  /* Semantic Colors */
+  --expanso-success: #59E248;        /* green-500 - Success states */
+  --expanso-success-bg: #F2FFF0;     /* green-50 - Success background */
+  --expanso-error: #FF7244;          /* red-500 - Error states */
+  --expanso-error-bg: #FFF3EF;       /* red-50 - Error background */
+  --expanso-warning: #FF953F;        /* orange-500 - Warning states */
+  --expanso-warning-bg: #FFF7F0;     /* orange-50 - Warning background */
+  --expanso-info: #00BBB4;           /* cyan-500 - Info states */
+  --expanso-info-bg: #ECFFFE;        /* cyan-50 - Info background */
+  
+  /* Borders */
+  --expanso-border-light: #ECECEC;   /* grey-200 - Light borders */
+  --expanso-border-medium: #E3E3E3;  /* grey-300 - Medium borders */
+  
+  /* Spacing (scaled up for presentations) */
+  --expanso-spacing-xs: 16px;        /* 1rem */
+  --expanso-spacing-sm: 24px;        /* 1.5rem */
+  --expanso-spacing-md: 32px;        /* 2rem */
+  --expanso-spacing-base: 48px;      /* 3rem */
+  --expanso-spacing-lg: 64px;        /* 4rem */
+  --expanso-spacing-xl: 80px;        /* 5rem */
+  --expanso-spacing-2xl: 120px;      /* 7.5rem */
+  --expanso-spacing-3xl: 160px;      /* 10rem */
+  
+  /* Presentation specific */
+  --expanso-margin-safe: 80px;
+  --expanso-margin-content: 120px;
+}
+
+/* Global Defaults */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Slidev Container Overrides */
+.slidev-layout {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: var(--expanso-bg-dark);
+  color: var(--expanso-text-inverse-soft);
+  font-size: 1.25rem;  /* Base 20px for better scaling */
+  line-height: 1.6;
+}
+
+/* Typography Classes - Scaled for Presentations */
+.headline {
+  font-size: 60pt;           /* 3.75rem - H2 scaled up */
+  font-weight: 600;
+  color: var(--expanso-text-inverse);
+  text-align: left;
+  line-height: 1.3;
+  margin: 0 0 40px 0;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  font-size: 96pt;           /* 6rem - Display scaled up */
+  font-weight: 700;
+  color: var(--expanso-text-inverse);
+  text-align: center;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.pillar-text {
+  font-size: 48pt;           /* 3rem - H3 scaled up */
+  font-weight: 400;
+  color: var(--expanso-text-inverse-soft);
+  text-align: center;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+
+.metric-large {
+  font-size: 144pt;          /* 9rem - Extra large for impact */
+  font-weight: 700;
+  color: var(--expanso-text-inverse);
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.metric-large .number {
+  color: var(--expanso-primary-light);  /* violet-500 - visible on dark */
+}
+
+.body-text {
+  font-size: 32pt;           /* 2rem - Body scaled up (30pt+ rule) */
+  font-weight: 400;
+  color: var(--expanso-text-inverse-soft);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.subtext {
+  font-size: 28pt;           /* 1.75rem - Small text scaled up */
+  font-weight: 400;
+  color: var(--expanso-text-secondary);
+  line-height: 1.5;
+}
+
+.footer-text {
+  font-size: 22pt;           /* 1.375rem - Caption scaled up */
+  font-weight: 400;
+  color: var(--expanso-text-secondary);
+  position: absolute;
+  bottom: 60px;
+  left: var(--expanso-margin-safe);
+}
+
+/* Headings - Following Design System */
+h1 {
+  font-size: 3.5rem;         /* 56px - H1 scaled for presentations */
+  font-weight: 700;
+  color: var(--expanso-text-inverse);
+  line-height: 1.2;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;         /* 40px - H2 scaled for presentations */
+  font-weight: 600;
+  color: var(--expanso-text-inverse);
+  line-height: 1.3;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-size: 1.875rem;       /* 30px - H3 scaled for presentations */
+  font-weight: 600;
+  color: var(--expanso-text-inverse-soft);
+  line-height: 1.4;
+  margin: 0 0 0.75rem 0;
+}
+
+/* Paragraphs and Text */
+p {
+  font-size: 1.25rem;        /* 20px base - use utility classes for larger */
+  font-weight: 400;
+  color: var(--expanso-text-inverse-soft);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+/* Lists */
+ul, ol {
+  font-size: 1.25rem;
+  color: var(--expanso-text-inverse-soft);
+  line-height: 1.8;
+  margin: 0 0 1.5rem 0;
+  padding-left: 2.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+li::marker {
+  color: var(--expanso-primary-light);  /* violet-500 for visibility on dark */
+}
+
+/* Strong and Emphasis */
+strong, b {
+  color: var(--expanso-text-inverse);
+  font-weight: 700;
+}
+
+em, i {
+  color: var(--expanso-text-inverse-soft);
+  font-style: italic;
+}
+
+/* Links */
+a {
+  color: var(--expanso-primary-light);  /* violet-500 for visibility */
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Code */
+code {
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--expanso-primary-light);
+}
+
+pre {
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Text Color Utilities - Official Design System */
+.text-white {
+  color: var(--expanso-text-inverse) !important;
+}
+
+.text-violet {
+  color: var(--expanso-primary-light) !important;  /* violet-500 */
+}
+
+.text-violet-strong {
+  color: var(--expanso-primary) !important;        /* violet-700 */
+}
+
+.text-success {
+  color: var(--expanso-success) !important;
+}
+
+.text-error {
+  color: var(--expanso-error) !important;
+}
+
+.text-warning {
+  color: var(--expanso-warning) !important;
+}
+
+.text-info {
+  color: var(--expanso-info) !important;
+}
+
+/* Legacy color aliases */
+.text-cyan {
+  color: var(--expanso-primary-light) !important;  /* Map to violet */
+}
+
+.text-red {
+  color: var(--expanso-error) !important;
+}
+
+.text-orange {
+  color: var(--expanso-warning) !important;
+}
+
+.text-dim {
+  color: var(--expanso-text-secondary) !important;
+}
+
+/* Spacing Utilities */
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mt-8 { margin-top: 32px; }
+.mt-10 { margin-top: 40px; }
+.mt-12 { margin-top: 48px; }
+.mt-16 { margin-top: 64px; }
+.mt-20 { margin-top: 80px; }
+.mt-24 { margin-top: 96px; }
+
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.mb-8 { margin-bottom: 32px; }
+.mb-12 { margin-bottom: 48px; }
+.mb-16 { margin-bottom: 64px; }
+.mb-20 { margin-bottom: 80px; }
+
+.px-4 { padding-left: 16px; padding-right: 16px; }
+.px-6 { padding-left: 24px; padding-right: 24px; }
+.px-8 { padding-left: 32px; padding-right: 32px; }
+.px-12 { padding-left: 48px; padding-right: 48px; }
+
+.py-4 { padding-top: 16px; padding-bottom: 16px; }
+.py-6 { padding-top: 24px; padding-bottom: 24px; }
+.py-8 { padding-top: 32px; padding-bottom: 32px; }
+.py-12 { padding-top: 48px; padding-bottom: 48px; }
+
+/* Grid Utilities */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gap-4 { gap: 16px; }
+.gap-6 { gap: 24px; }
+.gap-8 { gap: 32px; }
+.gap-10 { gap: 40px; }
+.gap-12 { gap: 48px; }
+.gap-16 { gap: 64px; }
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-8 { gap: 32px; }
+.gap-12 { gap: 48px; }
+.gap-16 { gap: 64px; }
+
+/* Box Utilities - Official Design System with Glassmorphism */
+.box {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--expanso-border-light);
+  border-radius: 8px;        /* Design system standard */
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box-violet {
+  background: rgba(104, 35, 205, 0.1);    /* violet-700 with opacity */
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--expanso-primary-lighter);
+  padding: 1.5rem;
+}
+
+.box-cyan {
+  background: rgba(146, 89, 237, 0.1);    /* violet-500 with opacity */
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--expanso-primary-light);
+  padding: 1.5rem;
+}
+
+.box-success {
+  background: var(--expanso-success-bg);
+  border: 2px solid var(--expanso-success);
+}
+
+.box-error {
+  background: var(--expanso-error-bg);
+  border: 2px solid var(--expanso-error);
+}
+
+.box-warning {
+  background: var(--expanso-warning-bg);
+  border: 2px solid var(--expanso-warning);
+}
+
+.box-info {
+  background: var(--expanso-info-bg);
+  border: 2px solid var(--expanso-info);
+}
+
+/* Absolute Positioning Utilities */
+.abs-tl {
+  position: absolute;
+  top: var(--expanso-margin-safe);
+  left: var(--expanso-margin-safe);
+}
+
+.abs-tr {
+  position: absolute;
+  top: var(--expanso-margin-safe);
+  right: var(--expanso-margin-safe);
+}
+
+.abs-bl {
+  position: absolute;
+  bottom: 60px;
+  left: var(--expanso-margin-safe);
+}
+
+.abs-br {
+  position: absolute;
+  bottom: 60px;
+  right: var(--expanso-margin-safe);
+}
+
+/* Logo */
+.logo {
+  max-width: 280px;
+  height: auto;
+}
+
+/* Platform Logos */
+.platform-logos {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.platform-logo {
+  height: 50px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.platform-logo:hover {
+  opacity: 1;
+}
+
+/* Divider */
+.divider {
+  width: 140px;
+  height: 4px;
+  background: var(--expanso-primary-light);  /* violet-500 */
+  margin: 40px auto;
+  border-radius: 2px;
+}
+
+/* Special Effects */
+.glow {
+  text-shadow: 0 0 40px rgba(146, 89, 237, 0.4);  /* violet-500 glow */
+}
+
+.glow-strong {
+  text-shadow: 0 0 60px rgba(104, 35, 205, 0.6);  /* violet-700 glow */
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ensure slide content is visible */
+.slidev-page {
+  background: var(--expanso-bg-dark);  /* Pure black per design system */
+}
+
+/* Override any default Slidev styles that conflict */
+.slidev-layout.default,
+.slidev-layout.center {
+  padding: var(--expanso-margin-safe);
+}
+
+/* Button Styles - Design System Primary Button */
+.btn-primary {
+  background: var(--expanso-primary);
+  color: var(--expanso-text-inverse);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 32pt;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--expanso-primary-hover);
+}
+
+.btn-primary:focus {
+  outline: 3px solid var(--expanso-primary-lighter);
+  outline-offset: 2px;
+}
+
+/* Button Secondary */
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--expanso-primary-lighter);
+  color: var(--expanso-primary-light);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 32pt;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--expanso-primary-subtle);
+}
+
+/* ============================================
+   Extended Color Palette - Complete Design System
+   ============================================ */
+
+/* Additional Violet Shades for advanced usage */
+.bg-violet-950 { background-color: #140034; }
+.bg-violet-900 { background-color: #27065B; }
+.bg-violet-800 { background-color: #501E99; }
+.bg-violet-700 { background-color: #6823CD; }
+.bg-violet-600 { background-color: #883FFD; }
+.bg-violet-500 { background-color: #9259ED; }
+.bg-violet-400 { background-color: #B087F1; }
+.bg-violet-300 { background-color: #C8A9FA; }
+.bg-violet-200 { background-color: #DFCBFD; }
+.bg-violet-100 { background-color: #F0E6FF; }
+.bg-violet-50 { background-color: #FAF6FF; }
+
+.text-violet-950 { color: #140034; }
+.text-violet-900 { color: #27065B; }
+.text-violet-800 { color: #501E99; }
+.text-violet-700 { color: #6823CD; }
+.text-violet-600 { color: #883FFD; }
+.text-violet-500 { color: #9259ED; }
+.text-violet-400 { color: #B087F1; }
+.text-violet-300 { color: #C8A9FA; }
+.text-violet-200 { color: #DFCBFD; }
+.text-violet-100 { color: #F0E6FF; }
+.text-violet-50 { color: #FAF6FF; }
+
+/* Blue Shades (Bacalhau) */
+.bg-blue-600 { background-color: #0055FF; }
+.bg-blue-500 { background-color: #256EFF; }
+.bg-blue-400 { background-color: #5A91FF; }
+.text-blue-600 { color: #0055FF; }
+.text-blue-500 { color: #256EFF; }
+.text-blue-400 { color: #5A91FF; }
+
+/* Ice Shades (Bacalhau Accent) */
+.bg-ice-600 { background-color: #33CCFF; }
+.bg-ice-500 { background-color: #33CCFF; }
+.bg-ice-400 { background-color: #68D9FF; }
+.text-ice-600 { color: #33CCFF; }
+.text-ice-500 { color: #33CCFF; }
+.text-ice-400 { color: #68D9FF; }
+
+/* Extended Semantic Colors */
+.text-success-dark { color: #2A6A22; }
+.text-error-dark { color: #982D09; }
+.text-warning-dark { color: #672E00; }
+.text-info-dark { color: #066D6A; }
+
+.bg-success-dark { background-color: #2A6A22; }
+.bg-error-dark { background-color: #982D09; }
+.bg-warning-dark { background-color: #672E00; }
+.bg-info-dark { background-color: #066D6A; }
+
+/* Magenta (Special/Premium) */
+.text-magenta { color: #F972F5; }
+.text-magenta-dark { color: #7D207A; }
+.bg-magenta { background-color: #F972F5; }
+.bg-magenta-50 { background-color: #FFF3FF; }
+
+/* Brown (Earthy) */
+.text-brown { color: #BF895E; }
+.text-brown-dark { color: #522401; }
+.bg-brown { background-color: #BF895E; }
+.bg-brown-50 { background-color: #F9F3EF; }
+
+/* Yellow (Caution/Highlight) */
+.text-yellow { color: #F9F348; }
+.text-yellow-dark { color: #69661E; }
+.bg-yellow { background-color: #F9F348; }
+.bg-yellow-50 { background-color: #FEFEED; }
+
+/* ============================================
+   Gradient Utilities
+   ============================================ */
+
+.bg-gradient-violet {
+  background: linear-gradient(135deg, #27065B 0%, #6823CD 100%);
+}
+
+.bg-gradient-violet-light {
+  background: linear-gradient(135deg, #6823CD 0%, #9259ED 100%);
+}
+
+.bg-gradient-blue {
+  background: linear-gradient(135deg, #001C70 0%, #0055FF 100%);
+}
+
+.bg-gradient-ice {
+  background: linear-gradient(135deg, #008CBB 0%, #33CCFF 100%);
+}
+
+/* ============================================
+   Border Utilities
+   ============================================ */
+
+.border-violet { border-color: #9259ED; }
+.border-violet-strong { border-color: #6823CD; }
+.border-blue { border-color: #0055FF; }
+.border-ice { border-color: #33CCFF; }
+.border-success { border-color: #59E248; }
+.border-error { border-color: #FF7244; }
+.border-warning { border-color: #FF953F; }
+.border-info { border-color: #00BBB4; }
+
+/* ============================================
+   Shadow Utilities (with brand colors)
+   ============================================ */
+
+.shadow-violet {
+  box-shadow: 0 4px 6px rgba(104, 35, 205, 0.3);
+}
+
+.shadow-violet-lg {
+  box-shadow: 0 10px 15px rgba(104, 35, 205, 0.4);
+}
+
+.shadow-blue {
+  box-shadow: 0 4px 6px rgba(0, 85, 255, 0.3);
+}
+
+/* ============================================
+   Focus States (Accessibility)
+   ============================================ */
+
+.focus-violet:focus {
+  outline: 3px solid #883FFD;
+  outline-offset: 2px;
+}
+
+.focus-blue:focus {
+  outline: 3px solid #0055FF;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Status Badges
+   ============================================ */
+
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 24pt;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge-success {
+  background-color: #F2FFF0;
+  color: #2A6A22;
+  border: 2px solid #59E248;
+}
+
+.badge-error {
+  background-color: #FFF3EF;
+  color: #982D09;
+  border: 2px solid #FF7244;
+}
+
+.badge-warning {
+  background-color: #FFF7F0;
+  color: #672E00;
+  border: 2px solid #FF953F;
+}
+
+.badge-info {
+  background-color: #ECFFFE;
+  color: #066D6A;
+  border: 2px solid #00BBB4;
+}
+
+.badge-violet {
+  background-color: #FAF6FF;
+  color: #6823CD;
+  border: 2px solid #9259ED;
+}
+
+/* ============================================
+   Code Block Themes
+   ============================================ */
+
+.code-block {
+  background: rgba(146, 89, 237, 0.05);
+  border: 2px solid rgba(146, 89, 237, 0.2);
+  border-radius: 8px;
+  padding: 32px;
+  font-family: 'Fira Code', monospace;
+  font-size: 24pt;
+  line-height: 1.6;
+  color: #FCFCFC;
+}
+
+.code-block-dark {
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #454545;
+}
+
+/* ============================================
+   Alert Boxes (Enhanced semantic boxes)
+   ============================================ */
+
+.alert {
+  padding: 32px;
+  border-radius: 8px;
+  border-left: 6px solid;
+  font-size: 28pt;
+  line-height: 1.6;
+}
+
+.alert-success {
+  background: #F2FFF0;
+  border-left-color: #59E248;
+  color: #2A6A22;
+}
+
+.alert-error {
+  background: #FFF3EF;
+  border-left-color: #FF7244;
+  color: #982D09;
+}
+
+.alert-warning {
+  background: #FFF7F0;
+  border-left-color: #FF953F;
+  color: #672E00;
+}
+
+.alert-info {
+  background: #ECFFFE;
+  border-left-color: #00BBB4;
+  color: #066D6A;
+}
+
+/* On dark backgrounds, invert colors */
+.slidev-layout .alert-success {
+  background: rgba(89, 226, 72, 0.1);
+  color: #6DF15D;
+}
+
+.slidev-layout .alert-error {
+  background: rgba(255, 114, 68, 0.1);
+  color: #FF9470;
+}
+
+.slidev-layout .alert-warning {
+  background: rgba(255, 149, 63, 0.1);
+  color: #FFA861;
+}
+
+.slidev-layout .alert-info {
+  background: rgba(0, 187, 180, 0.1);
+  color: #00DFD8;
+}
+
+/* ============================================
+   Advanced Animations & Transitions
+   Adapted from BaizeAI template
+   ============================================ */
+
+/* Enhanced v-click animations with smooth transitions */
+.slidev-vclick-target {
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease,
+    filter 200ms ease,
+    color 300ms ease;
+}
+
+.slidev-vclick-hidden {
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(3px);
+}
+
+/* Custom fade-out transition with blur effect */
+.fade-out-leave-active {
+  transition:
+    opacity calc(var(--slidev-transition-duration, 0.5s) * 0.6) ease-out,
+    filter 200ms ease;
+}
+
+.fade-out-enter-active {
+  transition:
+    opacity calc(var(--slidev-transition-duration, 0.5s) * 0.8) ease-in,
+    filter 200ms ease;
+  transition-delay: calc(var(--slidev-transition-duration, 0.5s) * 0.6);
+}
+
+.fade-out-enter-from,
+.fade-out-leave-to {
+  opacity: 0;
+  filter: blur(5px);
+}
+
+/* Code block line transitions */
+.slidev-code .line {
+  transition: opacity 200ms ease;
+}
+
+/* Backdrop blur for code blocks */
+.slidev-code {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(238, 238, 238, 0.1);
+  font-size: 1.5rem !important;
+  line-height: 1.8 !important;
+  padding: 1.5rem !important;
+}
+
+/* ============================================
+   Glassmorphism Card Components
+   ============================================ */
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(146, 89, 237, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card-glass-violet {
+  background: rgba(104, 35, 205, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(146, 89, 237, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(104, 35, 205, 0.2);
+}
+
+.card-glass-blue {
+  background: rgba(0, 85, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 85, 255, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 85, 255, 0.2);
+}
+
+/* ============================================
+   Click Animation Utilities
+   ============================================ */
+
+/* Scale up animation for v-click */
+.click-scale {
+  transition: transform 500ms ease;
+}
+
+.slidev-vclick-hidden.click-scale {
+  transform: scale(0.95);
+}
+
+/* Slide up animation for v-click */
+.click-slide-up {
+  transition: transform 500ms ease, opacity 500ms ease;
+}
+
+.slidev-vclick-hidden.click-slide-up {
+  transform: translateY(20px);
+}
+
+/* Slide in from left */
+.click-slide-left {
+  transition: transform 500ms ease, opacity 500ms ease;
+}
+
+.slidev-vclick-hidden.click-slide-left {
+  transform: translateX(-40px);
+}
+
+/* Slide in from right */
+.click-slide-right {
+  transition: transform 500ms ease, opacity 500ms ease;
+}
+
+.slidev-vclick-hidden.click-slide-right {
+  transform: translateX(40px);
+}

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Expanso - Upstream Data Platform</title>
+
+  <meta name="description" content="The platform that cuts cloud data costs by 50-70% through intelligent data filtering, transformation, and governance at the source.">
+  <meta name="author" content="David Aronchick">
+
+  <!-- reveal.js Core CSS -->
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+
+  <!-- Expanso Custom Theme -->
+  <link rel="stylesheet" href="css/theme/expanso.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============================================
+           SLIDE 1: TITLE SLIDE (Sales Deck - Three Pillars)
+           ============================================ -->
+      <section class="expanso-sales-title-slide" data-slide-number="Slide 1">
+        <!-- Logo Placeholder -->
+        <div class="expanso-logo-placeholder">[EXPANSO LOGO]</div>
+
+        <!-- Primary Tagline -->
+        <h1 class="sales-primary-tagline">Control Your Data. Everywhere.</h1>
+
+        <!-- Optional Divider -->
+        <div class="sales-tagline-divider"></div>
+
+        <!-- Three Value Pillars (Stacked, Centered) -->
+        <div class="sales-value-pillars">
+          <p class="pillar-line">Reduce platform costs by 50–70%.</p>
+          <p class="pillar-line">Accelerate engineering velocity.</p>
+          <p class="pillar-line">Deploy AI-ready infrastructure.</p>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="sales-title-footer">
+          <div class="sales-footer-left">
+            <div class="sales-contact-name">David Aronchick, CEO</div>
+            <div class="sales-contact-email">aronchick@expanso.io</div>
+          </div>
+          <div class="sales-footer-right">
+            <div class="sales-company-url">expanso.io</div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          Welcome. I'm David Aronchick, CEO of Expanso.
+
+          [PAUSE: Let the tagline land - "Control Your Data. Everywhere."]
+
+          Today I'm going to show you how to control your data everywhere to solve three critical challenges:
+
+          First: Reduce platform costs by 50 to 70 percent. Stop paying to move and store data you don't need.
+
+          Second: Accelerate engineering velocity. Free your teams from firefighting pipelines.
+
+          Third: Deploy AI-ready infrastructure. Clean, structured data where you need it.
+
+          [PAUSE: Let the three pillars land. Make eye contact with key stakeholders.]
+
+          TRANSITION: Let me start by showing you the problem we're solving - the $10M data tax.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 2: THE PROBLEM (Sales Deck)
+           ============================================ -->
+      <section class="problem-slide-sales" data-slide-number="Slide 2">
+        <!-- Headline (Top, Full Width) -->
+        <h1 class="problem-headline">Your Platforms Are Drowning in Garbage</h1>
+
+        <!-- Left Side: Data Flow Diagram -->
+        <div class="problem-diagram">
+          <!-- Stage 1: Sources -->
+          <div class="diagram-stage">
+            <div class="stage-label">SOURCES</div>
+            <div class="source-icons">
+              <div class="source-icon">
+                <div class="icon-shape icon-square"></div>
+                <div class="icon-label">Edge</div>
+              </div>
+              <div class="source-icon">
+                <div class="icon-shape icon-rectangle"></div>
+                <div class="icon-label">Servers</div>
+              </div>
+              <div class="source-icon">
+                <div class="icon-shape icon-circle"></div>
+                <div class="icon-label">Apps</div>
+              </div>
+              <div class="source-icon">
+                <div class="icon-shape icon-triangle"></div>
+                <div class="icon-label">IoT</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2: Unfiltered Flow -->
+          <div class="diagram-flow">
+            <div class="flow-arrow">
+              <div class="arrow-label">100% VOLUME</div>
+            </div>
+            <div class="cost-multiplier">
+              <span class="dollar-sign">$</span>
+              <span class="dollar-sign">$</span>
+              <span class="dollar-sign">$</span>
+              <span class="dollar-sign">$</span>
+              <span class="dollar-sign">$</span>
+            </div>
+          </div>
+
+          <!-- Stage 3: Platforms -->
+          <div class="diagram-stage">
+            <div class="stage-label">YOUR PLATFORMS</div>
+            <div class="platform-logos-diagram">
+              <div class="platform-logo-item">Snowflake</div>
+              <div class="platform-logo-item">Databricks</div>
+              <div class="platform-logo-item">Splunk</div>
+              <div class="platform-logo-item">Datadog</div>
+            </div>
+            <div class="cost-breakdown">Ingestion • Storage • Compute • Egress</div>
+          </div>
+        </div>
+
+        <!-- Right Side: Key Message & Bullets -->
+        <div class="problem-message">
+          <!-- Primary Statement with Cyan Accent on 70% -->
+          <h2 class="primary-statement">
+            <span class="stat-highlight">70%</span> of ingested data is never queried.
+          </h2>
+
+          <!-- Supporting Bullets -->
+          <ul class="problem-bullets">
+            <li>Bills growing 40% annually—insights aren't.</li>
+            <li>Engineering teams firefighting, not building.</li>
+            <li>$13M average cost of poor quality per year.</li>
+          </ul>
+        </div>
+
+        <!-- Source Attribution (Bottom) -->
+        <div class="source-attribution">
+          Industry data: Gartner 2024, CIO Dive 2024
+        </div>
+
+        <aside class="notes">
+          Your platforms are drowning in garbage. Let me show you why.
+
+          [POINT TO DIAGRAM] Here's what's happening: All your data—from edge devices, servers, applications, IoT sensors—flows directly into your cloud platforms. No filtering. No optimization. 100% volume.
+
+          [POINT TO DOLLAR SIGNS] And you pay at every stage. Ingestion. Storage. Compute. Egress. The costs multiply.
+
+          [PAUSE, TURN TO PRIMARY STATEMENT]
+
+          Here's the number that matters: 70% of the data you ingest is never queried. You're paying to move, store, and process data you'll never use.
+
+          [POINT TO BULLETS]
+
+          Your bills are growing 40% annually—but your insights aren't. Your engineering teams are firefighting broken pipelines instead of building new capabilities. And Gartner reports the average cost of poor data quality is $13 million per year.
+
+          [PAUSE: Let the pain land]
+
+          TRANSITION: So why is this happening? Let me show you the root cause...
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 3: THE MISSING LAYER (Sales Deck)
+           ============================================ -->
+      <section class="missing-layer-slide" data-slide-number="Slide 3">
+        <!-- Left Column: Text -->
+        <div class="missing-layer-left">
+          <!-- Headline -->
+          <h1 class="missing-layer-headline">The Missing Layer</h1>
+
+          <!-- Context Statement -->
+          <div class="context-statement">
+            <p>For decades, best practice was simple:</p>
+            <p class="workflow-line"><strong>Collect everything → Move centrally → Process there.</strong></p>
+            <p>When volumes were small, this worked.</p>
+            <p>Today? It's <span class="bankrupting-emphasis">bankrupting enterprises.</span></p>
+          </div>
+
+          <!-- Bottom Statement -->
+          <p class="bottom-statement-left">
+            By the time information reaches platforms, the <span class="financial-damage">financial damage</span> is done.
+          </p>
+        </div>
+
+        <!-- Right Column: Architecture Diagram -->
+        <div class="missing-layer-right">
+          <div class="architecture-gap-diagram">
+            <!-- Tier 1: Sources -->
+            <div class="tier-box sources-tier">
+              <div class="tier-label">DATA SOURCES</div>
+              <div class="tier-sublabel">Edge • Cloud • Apps</div>
+            </div>
+
+            <!-- Arrow -->
+            <div class="tier-arrow">↓</div>
+
+            <!-- Tier 2: The Gap (KEY ELEMENT) -->
+            <div class="tier-box gap-tier">
+              <div class="gap-header">
+                <span class="gap-title">❌ NO CONTROL LAYER</span>
+                <span class="problem-indicator">← THE PROBLEM</span>
+              </div>
+              <ul class="gap-bullets">
+                <li>No filtering</li>
+                <li>No optimization</li>
+                <li>No governance</li>
+              </ul>
+              <div class="gap-consequence">Everything moves downstream</div>
+            </div>
+
+            <!-- Arrow -->
+            <div class="tier-arrow">↓</div>
+
+            <!-- Tier 3: Platforms -->
+            <div class="tier-box platforms-tier">
+              <div class="tier-label">EXPENSIVE PLATFORMS</div>
+              <div class="tier-dollar-signs">
+                <span class="tier-dollar">💰</span>
+                <span class="tier-dollar">💰</span>
+                <span class="tier-dollar">💰</span>
+                <span class="tier-dollar">💰</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          Let me show you what's missing from your architecture.
+
+          For decades, the best practice was simple: Collect everything. Move it centrally. Process it there.
+
+          [PAUSE]
+
+          When volumes were small—gigabytes, not terabytes—this worked fine.
+
+          Today? It's bankrupting enterprises.
+
+          [POINT TO DIAGRAM]
+
+          Here's the structural problem: There's a missing layer in your architecture.
+
+          [POINT TO SOURCES] Data flows from sources...
+
+          [POINT TO GAP - THE RED BOX] ...through NO control layer. No filtering. No optimization. No governance. Everything moves downstream.
+
+          [POINT TO PLATFORMS] ...straight into expensive platforms. And you pay at every stage.
+
+          [PAUSE, POINT TO BOTTOM STATEMENT]
+
+          By the time information reaches Snowflake or Splunk? The financial damage is done. You've already paid to move and store data you'll never use.
+
+          [PAUSE: Let this sink in]
+
+          TRANSITION: So what do you need? A control layer. At the source. Before data moves.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 4: CUSTOMER RESULTS
+           ============================================ -->
+      <section data-slide-number="Slide 4">
+        <h1>Customer Results</h1>
+
+        <div class="grid-3 gap-lg mt-lg">
+          <div class="metric-card fragment">
+            <div class="value" style="color: #48BB78">68%</div>
+            <div class="label">Cost Reduction</div>
+            <div class="detail">$816K annual savings</div>
+          </div>
+
+          <div class="metric-card fragment">
+            <div class="value" style="color: #4299e1">3 weeks</div>
+            <div class="label">Time to Deploy</div>
+            <div class="detail">Shadow mode → production</div>
+          </div>
+
+          <div class="metric-card fragment">
+            <div class="value" style="color: #ed8936">2.5 months</div>
+            <div class="label">Payback Period</div>
+            <div class="detail">Full ROI realized</div>
+          </div>
+        </div>
+
+        <div class="expanso-container mt-xl fragment">
+          <h3>Fortune 500 Financial Services Company</h3>
+
+          <p><strong>Challenge:</strong> Splunk costs growing 45% YoY, most logs never queried</p>
+
+          <p><strong>Solution:</strong> Deployed Expanso filtering + intelligent sampling</p>
+
+          <p><strong>Results:</strong></p>
+          <ul>
+            <li>$816K annual savings on Splunk alone</li>
+            <li>Maintained 100% compliance coverage</li>
+            <li>Data engineering team freed from manual log management</li>
+          </ul>
+        </div>
+
+        <aside class="notes">
+          Let me show you real customer results.
+
+          One Fortune 500 financial services company was seeing Splunk costs grow 45% year over year. Most of those logs were never even queried.
+
+          They deployed Expanso with filtering and intelligent sampling.
+
+          The results: 68% cost reduction—$816,000 in annual savings on Splunk alone. They maintained 100% compliance coverage. And their data engineering team was freed from manual log management.
+
+          Time to deploy? Just 3 weeks from shadow mode to production. Payback period? 2 and a half months.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 5: CLOSING / CTA
+           ============================================ -->
+      <section class="contact-slide" data-slide-number="Slide 5">
+        <div class="contact-content">
+          <h1>Let's Talk About Your Data Costs</h1>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-icon">📧</div>
+              <div class="contact-label">Email</div>
+              <a href="mailto:aronchick@expanso.io" class="contact-value">aronchick@expanso.io</a>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">🌐</div>
+              <div class="contact-label">Website</div>
+              <a href="https://www.expanso.io" class="contact-value">www.expanso.io</a>
+            </div>
+          </div>
+
+          <div class="ceo-info">
+            <div class="ceo-name">David Aronchick</div>
+            <div class="ceo-title">CEO & Founder, Expanso</div>
+          </div>
+
+          <div class="cta-message">
+            Schedule a <strong>free cost assessment</strong> to see exactly where<br/>
+            Expanso can save you money
+          </div>
+        </div>
+
+        <div class="footer-tagline">
+          Expanso: Upstream Data Control
+        </div>
+
+        <aside class="notes">
+          I'd love to talk about your specific data costs.
+
+          We offer a free cost assessment where we analyze your current data flows and show you exactly where Expanso can save you money.
+
+          Reach out to me at aronchick@expanso.io or visit www.expanso.io.
+
+          Thank you.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           APPENDIX SEPARATOR
+           ============================================ -->
+      <section class="appendix-separator" data-slide-number="Appendix">
+        <h1 class="appendix-title">APPENDIX</h1>
+        <p class="appendix-subtitle">Alternate Slide Variations</p>
+        <div class="appendix-divider"></div>
+
+        <aside class="notes">
+          The following slides are alternate variations of the main deck.
+          Use these depending on your audience, context, or presentation style.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           APPENDIX: ALTERNATE PROBLEM STATEMENTS
+           ============================================ -->
+
+      <!-- ============================================
+           SLIDE 2 VARIATION: EMPATHY-DRIVEN
+           ============================================ -->
+      <section class="problem-slide-empathy" data-slide-number="Slide 2a">
+        <h1>You've Done Everything Right—<br/>And Your Bills Still Doubled</h1>
+
+        <div class="empathy-grid">
+          <!-- What You Did Right -->
+          <div class="empathy-column">
+            <div class="empathy-section positive">
+              <div class="section-icon">✅</div>
+              <h3>What You Did</h3>
+
+              <div class="empathy-item">
+                <div class="item-text">You invested in best-in-class platforms</div>
+                <div class="platform-logos-empathy">
+                  <span class="platform-badge">Snowflake</span>
+                  <span class="platform-badge">Databricks</span>
+                  <span class="platform-badge">Splunk</span>
+                  <span class="platform-badge">Datadog</span>
+                </div>
+              </div>
+
+              <div class="empathy-item">
+                <div class="item-text">You hired talented data teams</div>
+              </div>
+
+              <div class="empathy-item">
+                <div class="item-text">You centralized data for a "single source of truth"</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- But the Results -->
+          <div class="empathy-column">
+            <div class="empathy-section negative">
+              <div class="section-icon">❌</div>
+              <h3>But Here's What Happened</h3>
+
+              <div class="empathy-item problem">
+                <div class="problem-stat">40% YoY</div>
+                <div class="problem-text">Your cloud data bills grew year-over-year</div>
+              </div>
+
+              <div class="empathy-item problem">
+                <div class="problem-stat">60%</div>
+                <div class="problem-text">Your best engineers spend their time firefighting</div>
+              </div>
+
+              <div class="empathy-item problem">
+                <div class="problem-stat">Brittle</div>
+                <div class="problem-text">Your pipelines break constantly despite your investment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Line -->
+        <div class="empathy-conclusion">
+          <div class="conclusion-text">
+            The problem isn't your tools. It's your <strong>architecture</strong>.
+          </div>
+          <div class="conclusion-detail">
+            You're paying to move 100% of your data downstream—<br/>
+            when 60-70% of it will never be used
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+          📊 Industry-wide: 62% report storage cost overruns • 40% of engineering time on troubleshooting • $13M avg annual cost of data quality issues
+        </div>
+
+        <aside class="notes">
+          This is the empathy-driven variation. Use this when presenting to audiences who may feel defensive about their current investments. It validates their decisions first, then reveals the underlying architectural problem. Particularly effective with teams that have already made significant platform investments.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           APPENDIX: DESIGN VARIATIONS
+           ============================================ -->
+
+      <!-- ============================================
+           OPTION A: THE BOLD CLAIM (Typography-Driven)
+           ============================================ -->
+      <section class="title-slide-bold-claim" data-slide-number="Slide 1a">
+        <div class="expanso-logo">EXPANSO</div>
+
+        <div class="bold-claim-content">
+          <!-- Massive Emphasis on the Number -->
+          <div class="hero-number">50–70%</div>
+
+          <!-- Supporting Headline -->
+          <h1 class="claim-headline">
+            Cost Reduction<br/>
+            <span class="claim-detail">The Upstream Data Platform</span>
+          </h1>
+
+          <!-- Clean Underline Accent -->
+          <div class="accent-underline"></div>
+
+          <!-- Value Proposition -->
+          <p class="claim-subheadline">
+            Filter, transform, and govern data <strong>at the source</strong>—<br/>
+            before it hits Snowflake, Databricks, Splunk, or Datadog
+          </p>
+
+          <!-- Minimal Context -->
+          <div class="claim-context">
+            Cut cloud data costs in half by controlling<br/>
+            what reaches your expensive platforms
+          </div>
+        </div>
+
+        <!-- Bottom Minimal -->
+        <div class="bottom-minimal">
+          Expanso: Upstream Data Control
+        </div>
+
+        <aside class="notes">
+          This is the "Bold Claim" variation - typography-driven, making the 50-70% number the undeniable hero. The design is minimalist with maximum impact. Let the number land. Pause. Then explain the mechanism.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           OPTION B: THE VISUAL METAPHOR (Graphic-Rich)
+           ============================================ -->
+      <section class="title-slide-visual-metaphor" data-slide-number="Slide 1b">
+        <div class="expanso-logo">EXPANSO</div>
+
+        <!-- Two-Column Layout -->
+        <div class="metaphor-grid">
+          <!-- Left: Text Content -->
+          <div class="metaphor-text">
+            <h1 class="metaphor-headline">
+              The <span class="metaphor-accent">Upstream</span><br/>
+              Data Platform That Cuts<br/>
+              Cloud Data Costs by<br/>
+              <span class="metaphor-number">50–70%</span>
+            </h1>
+
+            <p class="metaphor-subheadline">
+              Filter, transform, and govern data<br/>
+              <strong>at the source</strong>—before it hits<br/>
+              Snowflake, Databricks, Splunk, or Datadog
+            </p>
+
+            <div class="metaphor-cta">
+              Control your data upstream.<br/>
+              Pay only for what you need.
+            </div>
+          </div>
+
+          <!-- Right: Visual Metaphor -->
+          <div class="metaphor-visual">
+            <!-- Chaotic Input -->
+            <div class="data-chaos">
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+            </div>
+
+            <!-- Expanso Lens (Filter) -->
+            <div class="expanso-lens">
+              <div class="lens-glow"></div>
+              <div class="lens-label">EXPANSO</div>
+              <div class="lens-sublabel">Filter · Transform · Control</div>
+            </div>
+
+            <!-- Clean Output -->
+            <div class="data-clean">
+              <div class="clean-beam"></div>
+              <div class="savings-indicator">50-70% Less</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Contact -->
+        <div class="bottom-contact-metaphor">
+          <div class="contact-left">
+            <strong>David Aronchick, CEO</strong> · aronchick@expanso.io
+          </div>
+          <div class="contact-right">
+            Expanso: Upstream Data Control
+          </div>
+        </div>
+
+        <aside class="notes">
+          This is the "Visual Metaphor" variation - uses a sophisticated visual showing chaotic data particles converging through the Expanso lens and emerging as a clean, streamlined beam. The visual instantly communicates the upstream filtering concept.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 3B: ROOT CAUSE VARIATION - DETAILED (Appendix)
+           ============================================ -->
+      <section class="root-cause-detailed-slide" data-slide-number="Slide 3b">
+        <!-- Title -->
+        <h1 class="root-cause-detailed-title">The Root Cause: Downstream-Only Architecture</h1>
+
+        <!-- Subtitle -->
+        <h2 class="root-cause-subtitle">The Modern Data Stack Has a Critical Gap:</h2>
+
+        <!-- Architecture Diagram with Detailed Breakdown -->
+        <div class="detailed-architecture-diagram">
+          <!-- Tier 1: Sources -->
+          <div class="detailed-tier sources-tier-detailed">
+            <div class="tier-header-detailed">DATA SOURCES</div>
+            <div class="tier-items">Edge • Cloud • Apps • IoT</div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="detailed-arrow">↓</div>
+
+          <!-- Tier 2: The Gap (with problem indicator) -->
+          <div class="detailed-tier gap-tier-detailed">
+            <div class="gap-tier-content">
+              <div class="gap-header-row">
+                <span class="gap-title-detailed">❌ NO CONTROL LAYER</span>
+                <span class="problem-arrow">← THE PROBLEM</span>
+              </div>
+              <ul class="gap-details-list">
+                <li>No filtering</li>
+                <li>No optimization</li>
+                <li>No governance at source</li>
+              </ul>
+              <div class="gap-result">Everything moves downstream →</div>
+            </div>
+          </div>
+
+          <!-- Arrow -->
+          <div class="detailed-arrow">↓</div>
+
+          <!-- Tier 3: Platforms with Cost Breakdown -->
+          <div class="detailed-tier platforms-tier-detailed">
+            <div class="tier-header-detailed">EXPENSIVE DOWNSTREAM PLATFORMS</div>
+            <div class="platform-logos-row">
+              <span class="platform-name">Snowflake</span>
+              <span class="platform-name">Databricks</span>
+              <span class="platform-name">Splunk</span>
+              <span class="platform-name">Datadog</span>
+            </div>
+            <div class="cost-breakdown-section">
+              <div class="cost-header">💰 You pay for EVERYTHING:</div>
+              <ul class="cost-list">
+                <li>Transfer costs</li>
+                <li>Storage costs (100% of data)</li>
+                <li>Compute costs (query unused data)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Statement -->
+        <p class="root-cause-conclusion">
+          By the time data lands in the cloud, the financial damage is already done.
+        </p>
+
+        <aside class="notes">
+          This is the detailed variation of Slide 3 - shows the same architectural gap but with more explicit cost breakdown.
+
+          Use this version when presenting to:
+          - CFOs or FinOps teams who need detailed cost understanding
+          - Technical audiences who want to see exactly what's happening at each stage
+          - Audiences who need platform-specific examples (Snowflake, Databricks, Splunk, Datadog)
+
+          [POINT TO SOURCES] Data flows from all your sources...
+
+          [POINT TO GAP] ...through NO control layer. No filtering at the source. No optimization. No governance where the data originates.
+
+          [POINT TO PLATFORMS] ...straight into expensive platforms. And you pay at EVERY stage.
+
+          [POINT TO COST BREAKDOWN] Transfer costs to move the data. Storage costs for 100% of your data—even the 70% you'll never query. Compute costs to process and query data you don't need.
+
+          By the time data lands in the cloud? The financial damage is already done. You've paid to move and store terabytes of data you'll never use.
+
+          TRANSITION: So what's the solution? You need control at the source.
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 3C: MISSING LAYER - MODERN CENTERED (Appendix)
+           2025 Enterprise Sales Design
+           ============================================ -->
+      <section class="missing-layer-modern-slide" data-slide-number="Slide 3c">
+        <!-- Headline (Top Center) -->
+        <h1 class="modern-headline">The Root Cause: Downstream-Only Architecture</h1>
+
+        <!-- Subhead -->
+        <h2 class="modern-subhead">The Modern Data Stack Has a Critical Gap:</h2>
+
+        <!-- Centered Architecture Diagram -->
+        <div class="modern-architecture-stack">
+
+          <!-- Tier 1: Data Sources -->
+          <div class="modern-tier modern-sources">
+            <div class="modern-tier-label">DATA SOURCES</div>
+            <div class="modern-tier-content">Edge • Cloud • Apps • IoT</div>
+          </div>
+
+          <!-- Flow Arrow -->
+          <div class="modern-flow-arrow">
+            <div class="arrow-line"></div>
+            <div class="arrow-head">▼</div>
+          </div>
+
+          <!-- Tier 2: The Gap (CRITICAL ELEMENT) -->
+          <div class="modern-tier modern-gap">
+            <div class="modern-gap-header">
+              <span class="gap-x">❌</span>
+              <span class="gap-title-modern">NO CONTROL LAYER</span>
+              <span class="problem-label">← THE PROBLEM</span>
+            </div>
+            <div class="modern-gap-body">
+              <ul class="modern-gap-list">
+                <li>No filtering</li>
+                <li>No optimization</li>
+                <li>No governance at source</li>
+              </ul>
+              <div class="modern-gap-consequence">
+                Everything moves downstream →
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow Arrow -->
+          <div class="modern-flow-arrow">
+            <div class="arrow-line"></div>
+            <div class="arrow-head">▼</div>
+          </div>
+
+          <!-- Tier 3: Expensive Platforms -->
+          <div class="modern-tier modern-platforms">
+            <div class="modern-tier-label">EXPENSIVE DOWNSTREAM PLATFORMS</div>
+            <div class="modern-platform-logos">
+              <span class="platform-badge">❄️ Snowflake</span>
+              <span class="platform-badge">🧱 Databricks</span>
+              <span class="platform-badge">🔥 Splunk</span>
+              <span class="platform-badge">🐶 Datadog</span>
+            </div>
+            <div class="modern-cost-section">
+              <div class="cost-title">💰 You pay for EVERYTHING:</div>
+              <ul class="modern-cost-breakdown">
+                <li>Transfer costs</li>
+                <li>Storage costs (100% of data)</li>
+                <li>Compute costs (query unused data)</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Statement -->
+        <p class="modern-conclusion">
+          By the time data lands in the cloud, the <span class="highlight-damage">financial damage</span> is already done.
+        </p>
+
+        <aside class="notes">
+          This is the modern, centered variation of Slide 3 - emphasizes the architectural gap with 2025 design principles.
+
+          Use this version when presenting to:
+          - Technical executives (CTOs, VPs of Engineering) who need clear architectural understanding
+          - Board members or investors who want visual clarity
+          - Conference audiences where visual impact matters
+
+          [OPEN WITH HEADLINE]
+          "Let me show you the root cause of your data cost problem."
+
+          [POINT TO DIAGRAM]
+          "Here's what's broken in the modern data stack."
+
+          [POINT TO SOURCES]
+          "Data flows from all your sources—edge devices, cloud apps, IoT sensors..."
+
+          [POINT TO GAP - EMPHASIZE THE RED WARNING BOX]
+          "...through NO control layer. There's no filtering at the source. No optimization. No governance where data originates. Everything just moves downstream."
+
+          [POINT TO PLATFORMS]
+          "...straight into expensive platforms. Snowflake. Databricks. Splunk. Datadog."
+
+          [POINT TO COST BREAKDOWN]
+          "And you pay for EVERYTHING. Transfer costs to move it. Storage costs for 100% of the data—including the 70% you'll never query. Compute costs to process data you don't need."
+
+          [PAUSE, POINT TO BOTTOM STATEMENT]
+          "By the time data lands in the cloud? The financial damage is already done."
+
+          [LET IT LAND - 2 SECOND PAUSE]
+
+          TRANSITION: "So what do you need? A control layer. At the source. Before data moves. Let me show you what that looks like..."
+        </aside>
+      </section>
+
+      <!-- ============================================
+           SLIDE 3D: BELIEF VS REALITY (Appendix)
+           Provocative "Flawed Assumption" Framework
+           ============================================ -->
+      <section class="belief-reality-slide" data-slide-number="Slide 3d">
+        <!-- Headline (Top Center) -->
+        <h1 class="belief-headline">The Flawed Assumption Costing You Millions</h1>
+
+        <!-- Two-Column Comparison: Belief vs Reality -->
+        <div class="belief-reality-container">
+
+          <!-- Left Column: The Belief -->
+          <div class="belief-column">
+            <div class="column-header belief-header">
+              <span class="header-icon">💭</span>
+              <span class="header-text">THE BELIEF</span>
+            </div>
+            <div class="column-content">
+              <blockquote class="belief-quote">
+                "Centralizing data enables control, speed, and better insights."
+              </blockquote>
+              <div class="belief-points">
+                <p class="belief-point">It feels safe.</p>
+                <p class="belief-point">Simplified.</p>
+                <p class="belief-point">"High-speed" compute.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: The Reality -->
+          <div class="reality-column">
+            <div class="column-header reality-header">
+              <span class="header-icon">⚠️</span>
+              <span class="header-text">THE REALITY</span>
+            </div>
+            <div class="column-content">
+              <p class="reality-statement">
+                You're moving volumes of data across networks you pay for, into systems you overprovision.
+              </p>
+              <ul class="reality-bullets">
+                <li><strong>Slow</strong> (latency)</li>
+                <li><strong>Expensive</strong> ($$$$)</li>
+                <li><strong>Risky</strong> (exposure)</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Divider Line -->
+        <div class="cost-divider"></div>
+
+        <!-- The Cost Section (Bottom) -->
+        <div class="cost-breakdown-grid">
+          <div class="cost-title-main">THE COST:</div>
+
+          <div class="cost-item">
+            <span class="cost-icon">💰</span>
+            <div class="cost-text">
+              <strong>Financial:</strong> You pay to move terabytes you don't need
+            </div>
+          </div>
+
+          <div class="cost-item">
+            <span class="cost-icon">⚙️</span>
+            <div class="cost-text">
+              <strong>Operational:</strong> Bottlenecks, complexity, engineering toil
+            </div>
+          </div>
+
+          <div class="cost-item">
+            <span class="cost-icon">🎯</span>
+            <div class="cost-text">
+              <strong>Strategic:</strong> Blind at the edge. Slow to react.
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          This is the "Belief vs. Reality" variation - a more provocative approach to Slide 3.
+
+          Use this version when:
+          - Presenting to executives who need their assumptions challenged
+          - Conference talks where you want to create cognitive dissonance
+          - Audiences who are heavily invested in centralized architectures
+          - You want a more confrontational, debate-style approach
+
+          [OPEN WITH HEADLINE]
+          "Let me challenge an assumption that's probably costing you millions."
+
+          [POINT TO LEFT COLUMN]
+          "Here's the belief: Centralizing data enables control, speed, and better insights. It feels safe. Simplified. You get access to high-speed compute in the cloud."
+
+          [PAUSE - LET THEM NOD ALONG]
+
+          [POINT TO RIGHT COLUMN - SHIFT TONE]
+          "Here's the reality: You're moving volumes of data across networks you pay for, into systems you overprovision."
+
+          [POINT TO BULLETS]
+          "It's slow—latency kills real-time use cases. It's expensive—every byte moved costs money. It's risky—you're exposing data across networks and storage systems."
+
+          [PAUSE]
+
+          [POINT TO COST BREAKDOWN]
+          "Let's talk about the real cost of this assumption."
+
+          [POINT TO EACH COST ITEM]
+          "Financially? You're paying to move terabytes you'll never use. Operationally? Your engineers are stuck managing bottlenecks and complexity. Strategically? You're blind at the edge where the action happens. By the time data reaches your systems, it's too late to react."
+
+          [PAUSE - LET IT LAND]
+
+          TRANSITION: "So what if we flipped this assumption? What if you processed data where it originates—before it moves?"
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- reveal.js Core JavaScript -->
+  <script src="node_modules/reveal.js/dist/reveal.js"></script>
+
+  <!-- Expanso Custom Initialization -->
+  <script src="js/reveal-init.js"></script>
+</body>
+</html>

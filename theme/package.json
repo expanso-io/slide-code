@@ -1,0 +1,34 @@
+{
+  "name": "slidev-theme-expanso",
+  "version": "1.0.0",
+  "description": "Expanso presentation theme for Slidev",
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "expanso"
+  ],
+  "dependencies": {
+    "seedrandom": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/seedrandom": "^3.0.8"
+  },
+  "slidev": {
+    "colorSchema": "dark",
+    "defaults": {
+      "fonts": {
+        "sans": "Inter",
+        "serif": "Inter",
+        "mono": "Fira Code"
+      },
+      "transition": "slide-left",
+      "highlighter": "shiki",
+      "aspectRatio": "16/9",
+      "canvasWidth": 1920,
+      "lineNumbers": false
+    }
+  },
+  "engines": {
+    "slidev": ">=0.48.0"
+  }
+}

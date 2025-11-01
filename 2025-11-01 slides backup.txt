@@ -1,0 +1,819 @@
+== BACKUP
+
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       Policy-Driven Control Where Data Lives                      │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│               BEFORE                                       AFTER                  │
+│       (Brittle Custom Scripts)                      (Declarative Policies)        │
+│                                                                                   │
+│      • 40% of time firefighting                    • 90% fewer incidents          │
+│      • 6-month onboarding backlog                  • Onboard in days, not months  │
+│      • Manual PII masking scripts                  • Automated PII masking        │
+│      • Configuration drift across                  • Single policy, enforced      │
+│        1,000+ nodes                                  everywhere                   │
+│                                                                                   │
+│                                                                                   │
+│        Replace thousands of lines of brittle code with a single,                  │
+│               declarative policy layer at the source.                             │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Before/after format showing operational transformation. Speaks // directly to engineering pain points. Four specific improvements.
+
+
+
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                             The Data Tax: An Architectural Flaw                     │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│             [DATA SOURCES] ───(100% Volume)───> [PLATFORMS]                       │
+│           (Edge, Servers, Apps)                 (Snowflake, Databricks, etc.)     │
+│                                                        │                          │
+│                                                        ▼                          │
+│                                                    💰💰💰💰💰                       │
+│                                                 (Runaway Costs)                   │
+│                                                                                   │
+│           You pay to move, store, and process terabytes of data you               │
+│           will never use. By the time it lands, the damage is done.               │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│           • 40% of engineering time is spent firefighting pipelines.              │
+│           • 62% of enterprises report storage cost overruns.                      │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: This is a compliant version of the original's full-width
+// diagram. It simplifies the diagram and text to meet the 10/20/30 rule while
+// retaining the core visual message. Uses approved stats.
+
+
+# Slide 3-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                          The Modern Data Stack is Missing a Layer                 │
+│                      (Font: Inter Semi-Bold, 60pt, #FFFFFF)                       │
+│                                                                                   │
+│                                                                                   │
+│       [Sources] ───────────( ❌ THE GAP ❌ )───────────> [Platforms]             │
+│     (Edge, On-Prem)                                      (Snowflake, Databricks)  │
+│                                                                              a     │
+│                                                                                   │
+│           There is no control layer between where data lives                      │
+│                and where you analyze it.                                          │
+│                    (Font: Inter Medium, 42pt, #D4D9E0)                            │
+│                                                                                   │
+│                                                                                   │
+│            • Every byte is moved, stored, and processed—valuable or not.          │
+│            • By the time data reaches the cloud, the cost is locked in.           │
+│            • You can't fix a source problem with a downstream tool.               │
+│                     (Font: Inter Regular, 32pt, #D4D9E0)                          │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Replaces complex table with a single, clear diagram.
+// Uses approved spatial language ("where data lives"). All text >30pt.
+
+# Slide 3-b:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       The Flawed Assumption Costing You Millions                  │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│            THE BELIEF                                    THE REALITY              │
+│        (Font: Inter Bold, 36pt, #8A95A3)             (Font: Inter Bold, 36pt, #FFFFFF) │
+│                                                                                   │
+│      "Centralizing all data gives us                      You are paying to move, │
+│       more control and speed."                             store, and process     │
+│                                                            terabytes of low-value │
+│                                                            data before you use it.│
+│                                                                                   │
+│                                                          • Slow (network latency) │
+│                                                          • Expensive (egress fees)│
+│                                                          • Risky (data sprawl)    │
+│                     (Font: Inter Regular, 32pt, #D4D9E0)                          │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Simple two-column layout creates a stark contrast.
+// The "Reality" side is highlighted in brighter text to draw focus. All fonts >30pt.
+
+# Slide 3-c:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                           An Architecture Built for a Different Era               │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│               THEN (2010)                                   NOW (2025)            │
+│          (Font: Inter Bold, 36pt, #8A95A3)           (Font: Inter Bold, 36pt, #FFFFFF) │
+│                                                                                   │
+│         • Gigabytes of data                       • Petabytes of data (200% growth) │
+│         • Centralized sources                     • Distributed (cloud, edge, IoT)  │
+│         • Predictable costs                       • Runaway, unpredictable spend    │
+│                                                                                   │
+│                                                                                   │
+│         The "centralize everything" model worked for a simpler time.              │
+│         Today, it's the most expensive way to operate.                            │
+│                      (Font: Inter Regular, 36pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: This is a compliant version of the original's "Then vs. Now"
+// table. It simplifies the content to its essential points, uses large fonts, and
+// provides a clear concluding statement.
+
+# Slide 3-d:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                           Appendix: The Architectural Gap                         │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│         [DATA SOURCES]                                                            │
+│       (Edge, Cloud, Apps)                                                         │
+│              │                                                                    │
+│              ▼                                                                    │
+│         ┌──────────────────────────────────────────────────┐                      │
+│         │         ❌ NO CONTROL LAYER (THE GAP)            │                      │
+│         │   • No filtering where data lives                │                      │
+│         │   • No governance before platforms ingest        │                      │
+│         └──────────────────────────────────────────────────┘                      │
+│              │ (100% of data—valuable or not—is moved)                            │
+│              ▼                                                                    │
+│         [PLATFORMS: Snowflake, Databricks, Splunk]                                │
+│         💰 You pay for everything: Ingestion, Storage, Compute.                   │
+│                                                                                   │
+│                                                                                   │
+│         By the time data lands in your platforms, the financial damage is done.   │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+
+# Slide 3-e:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       The Flawed Assumption Costing You Millions                  │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│            THE BELIEF                                    THE REALITY              │
+│        (Font: Inter Bold, 36pt, #8A95A3)             (Font: Inter Bold, 36pt, #FFFFFF) │
+│                                                                                   │
+│      "Centralizing all data gives us                      You are paying to move, │
+│       more control and speed."                             store, and process     │
+│                                                            terabytes of low-value │
+│                                                            data before you use it.│
+│                                                                                   │
+│                                                          • Slow (network latency) │
+│                                                          • Expensive (egress fees)│
+│                                                          • Risky (data sprawl)    │
+│                     (Font: Inter Regular, 32pt, #D4D9E0)                          │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+
+
+# Slide 4-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                    Filter, Transform, and Govern Data at the Source               │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                  BEFORE                                     AFTER                 │
+│                                                                                   │
+│        [Source] ---> 100% Data ---> [Platform]       [Source] -> [EXPANSO] -> 30% Data -> [Platform] │
+│                      💰💰💰💰💰                                   💰💰              │
+│                                                                                   │
+│                                                                                   │
+│           Expanso sits where your data lives, sending only high-value,            │
+│                 AI-ready data to your existing platforms.                         │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Directly presents the Expanso solution. Simple visual contrast.
+// No jargon. No "solution category." All text >30pt. High whitespace.
+
+# Slide 4-b:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                             This is a Fight Against Gravity                      │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                   200%                                            │
+│                     (Font: Inter Bold, 144pt, #00D9FF)                            │
+│                                                                                   │
+│                               Annual data growth—driven by AI,                    │
+│                               IoT, and observability.                             │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│                                                                                   │
+│               Everyone knows something's wrong. But we keep reaching for          │
+│                    the same solution: bigger, more expensive clouds.              │
+│                          (Font: Inter Regular, 32pt, #D4D9E0)                     │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: This slide creates urgency. The headline is contrarian.
+// The focal point is a massive, approved metric on data growth.
+// The sub-text uses the CEO's specific voice. It makes the problem feel inevitable.
+
+# Slide 4-c:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       Expanso's Control Layer                           │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│      [DATA SOURCES] ───> ┌────────────────────────┐ ───> [YOUR PLATFORMS]         │
+│                          │   ✅ EXPANSO CONTROL   │      (Snowflake, Databricks)   │
+│                          │   • Filter (Cut 50-70%)│                               │
+│                          │   • Transform (AI-Ready) │      • Faster Queries        │
+│                          │   • Govern (Automated)   │      • Lower Bills           │
+│                          └────────────────────────┘                               │
+│                                                                                   │
+│      HOW IT WORKS                                                                 │
+│      1. Filter noise and duplicates where data lives.                             │
+│      2. Transform data into AI-ready formats before it moves.                     │
+│      3. Govern with automated PII masking and full lineage.                       │
+│      4. Route high-value data to platforms, low-value to cheap storage.           │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│           Filter once at the source → Save everywhere.                            │
+│                     (Font: Inter Medium, 36pt, #FFFFFF)                           │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+
+# Slide 4-d:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                      A New Architecture for the Data-Intensive Era                │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│          THE OLD WAY: Collect ──> Move ──> Process                                │
+│                   (Expensive, slow, and brittle)                                  │
+│                                                                                   │
+│                                                                                   │
+│          THE NEW WAY: Process at the Source ──> Move Selectively                  │
+│                   (Cost-effective, real-time, resilient)                          │
+│                                                                                   │
+│                                                                                   │
+│         Expanso provides the control layer to enable this new architecture,       │
+│               reducing platform costs by 50-70%.                                  │
+│                      (Font: Inter Regular, 36pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+
+# Slide 5-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                           Reduce Platform Costs by 50-70%                         │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                               $1.77M                                              │
+│                     (Font: Inter Bold, 144pt, #00D9FF)                            │
+│                                                                                   │
+│                          Annual savings for a Fortune 500 retail client           │
+│                             by reducing data volume by 58%.                       │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│                                                                                   │
+│                     • Filter noise and duplicates at the source.                  │
+│                     • Route low-value data to cheaper storage.                    │
+│                     • Eliminate redundant processing in Snowflake.                │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Follows Benefit/Proof slide template. One focal point metric.
+// Headline is the Pillar 1 promise. Uses approved metric. All fonts >30pt.
+
+# Slide 5-b:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                             The ROI of Source-Side Control                        │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│              BEFORE                                         AFTER                 │
+│         (Unpredictable Spend)                           (Predictable ROI)         │
+│                                                                                   │
+│           $5.5M Annual Cost                           $1.9M Annual Cost           │
+│           (Growing 40% YoY)                             (Costs drop 65%)          │
+│                                                                                   │
+│                                                                                   │
+│         • Filter data where it lives, before you pay to move it.                  │
+│         • Pay a fixed cost for Expanso; cut variable platform spend.              │
+│         • Achieve payback in 47 days and an 8.2x first-year ROI.                  │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Uses financial language. "Before/After" focuses on cost,
+// not architecture. Key financial metrics (payback, ROI) are prominent.
+
+# Slide 5-c:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       Policy-Driven Control Where Data Lives                      │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│               BEFORE                                       AFTER                │
+│       (Brittle Custom Scripts)                      (Declarative Policies)        │
+│                                                                                   │
+│      • 40% of time firefighting                    • 90% fewer incidents          │
+│      • 6-month onboarding backlog                  • Onboard in days, not months  │
+│      • Manual PII scripts                          • Automated PII masking        │
+│                                                                                   │
+│                                                                                   │
+│        Replace thousands of lines of brittle code with a single,                 │
+│               declarative policy layer at the source.                             │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Speaks directly to engineering pain points. "Before/After"
+// contrasts operational chaos with declarative control. Metrics are operational.
+
+# Slide 5-d:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       Enforce Governance Before Data Moves                        │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│               BEFORE                                       AFTER                │
+│       (Detecting Risk Downstream)                 (Preventing Risk at the Source) │
+│                                                                                   │
+│      • PII spreads across 10+ systems              • PII masked before it moves   │
+│      • Incomplete audit trails                     • Full lineage from source     │
+│      • Compliance is a reactive effort             • Governance is automated      │
+│                                                                                   │
+│                                                                                   │
+│          Don't chase compliance violations after the fact.                       │
+│          Prevent them from ever happening.                                        │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Uses security and compliance language. "Before/After"
+// contrasts reactive detection with proactive prevention, a key CISO goal.
+
+# Slide 5-e:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                      A New Architecture for the Data-Intensive Era                │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│          THE OLD WAY: Collect ──> Move ──> Process                                │
+│                   (Expensive, slow, and brittle)                                  │
+│                                                                                   │
+│                                                                                   │
+│          THE NEW WAY: Process at the Source ──> Move Selectively                  │
+│                   (Cost-effective, real-time, resilient)                          │
+│                                                                                   │
+│                                                                                   │
+│         Expanso provides the control layer to enable this new architecture,       │
+│               reducing platform costs by 50-70%.                                  │
+│                      (Font: Inter Regular, 36pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: This compliant version simplifies the "Old Way vs. New Way"
+// text into a powerful, memorable contrast. It clearly states the paradigm shift
+// and ties it back to Expanso and the core cost-saving metric.
+
+
+# Slide 5-f:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                           A Fundamentally Better Approach                         │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│              THE OLD WAY (Centralize)                  THE EXPANSO WAY (Control at Source) │
+│         (Font: Inter Bold, 36pt, #8A95A3)            (Font: Inter Bold, 36pt, #FFFFFF)    │
+│                                                                                   │
+│      ❌ Move 100% of data, valuable or not.        ✅ Move only high-value data.         │
+│                                                                                   │
+│      ❌ Pay for everything you collect.            ✅ Pay only for what you need.        │
+│                                                                                   │
+│      ❌ Costs explode with data growth.            ✅ Costs are controlled.              │
+│                                                                                   │
+│      ❌ Governance is a reactive effort.           ✅ Governance is automated, proactive.  │
+│                                                                                   │
+│      ❌ $83/TB Centralized Storage                 ✅ $35/TB Distributed Storage         │
+│                                                                                   │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│               Stop paying the Data Tax on data you will never use.                │
+│                     (Font: Inter Medium, 36pt, #FFFFFF)                           │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+
+# Slide 6-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                         Accelerate Engineering Velocity                           │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                  50%                                              │
+│                     (Font: Inter Bold, 144pt, #FFFFFF)                            │
+│                                                                                   │
+│                           Reduction in data onboarding time,                      │
+│                           from months to days.                                    │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│                                                                                   │
+│                     • Set policies once; enforce everywhere automatically.        │
+│                     • Eliminate brittle, custom-coded pipelines.                  │
+│                     • Propagate updates in <30 seconds across 10,000+ nodes.      │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Follows Benefit/Proof slide template. Pillar 2 headline.
+// Focal point is an approved velocity metric. No word fatigue with previous slide.
+
+# Slide 7-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                          Deploy AI-Ready Infrastructure                           │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                   16x                                             │
+│                     (Font: Inter Bold, 144pt, #FFFFFF)                            │
+│                                                                                   │
+│                                  Faster query performance                         │
+│                             for ML model training.                                │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│                                                                                   │
+│                     • Deliver clean, structured data—not raw garbage.             │
+│                     • Provide full data lineage from source to model.             │
+│                     • Perform real-time feature engineering where data lives.     │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Follows Benefit/Proof slide template. Pillar 3 headline.
+// Focal point is an approved AI/Data Quality metric. No word fatigue.
+
+# Slide 8-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                   Complement and Enhance Your Existing Stack                      │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│             [Data Sources] ──> [EXPANSO] ──> [Snowflake] [Databricks]             │
+│          (Servers, Cloud, Edge)   │         (Filter, Transform, Govern)           │
+│                                   │                                               │
+│                                   └─────────> [Splunk] [Datadog]                  │
+│                                                                                   │
+│                                                                                   │
+│          Expanso sits BEFORE your existing platforms, making them                 │
+│                 faster, cheaper, and more reliable.                               │
+│                     (Font: Inter Medium, 42pt, #D4D9E0)                           │
+│                                                                                   │
+│                                                                                   │
+│                        No rip-and-replace required.                               │
+│                      (Font: Inter Regular, 32pt, #B8BFC7)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Simple integration diagram. Uses logos of specific platforms.
+// Reinforces "complementary" positioning. All fonts >30pt. High whitespace.
+
+# Slide 9-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                             Trusted by Industry Leaders                           │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│          [Customer Logo 1]   [Customer Logo 2]   [Customer Logo 3]                │
+│                                                                                   │
+│          [Customer Logo 4]   [Customer Logo 5]   [Customer Logo 6]                │
+│           (Logos are grayscale, equally sized, with ample spacing)                │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│             From Fortune 500 enterprises to government agencies,                  │
+│              teams rely on Expanso to control their data everywhere.              │
+│                     (Font: Inter Regular, 32pt, #D4D9E0)                          │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Minimalist social proof. Grayscale logos for brand consistency.
+// High whitespace signals confidence. All fonts >30pt.
+
+# Slide 10-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                          Let's Quantify Your Savings                              │
+│                       (Font: Inter Semi-Bold, 72pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│            Schedule your complimentary Data Value Assessment.                     │
+│                   (Font: Inter Regular, 42pt, #D4D9E0)                            │
+│                                                                                   │
+│                                                                                   │
+│                                expanso.io/assessment                              │
+│                       (Font: Inter Bold, 42pt, #00D9FF)                           │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+│                       David Aronchick | aronchick@expanso.io                      │
+│                           (Font: Inter Regular, 30pt, #8A95A3)                    │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: One focal point, one clear action. ~70% whitespace.
+// URL is highlighted. All fonts >30pt. This concludes the 10-slide deck.
+
+# Slide 11-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                         Different Approaches for Different Problems               │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│          ┌───────────────────┬───────────────────┬───────────────────┐            │
+│          │    Cribl          │  Fivetran/Airbyte │     EXPANSO       │            │
+│          │ (Observability)   │   (Integration)   │   (Optimization)  │            │
+│          ├───────────────────┼───────────────────┼───────────────────┤            │
+│          │ ✅ Reduces SIEM    │ ✅ Connects SaaS   │ ✅ Reduces ALL     │            │
+│          │    costs (35%)    │    apps           │    platform costs │            │
+│          │                   │                   │    (50-70%)       │            │
+│          │ ❌ Analytics data  │ ❌ Increases costs │ ✅ Prevents quality│            │
+│          │    not covered    │                   │    issues         │            │
+│          │                   │                   │                   │            │
+│          │ ❌ Downstream      │ ❌ Downstream      │ ✅ Upstream control│            │
+│          │    routing        │    replication    │    at the source  │            │
+│          └───────────────────┴───────────────────┴───────────────────┘            │
+│                                                                                   │
+│             Competitors solve point problems. Expanso solves the                  │
+│                  foundational problem of data cost and quality.                   │
+│                     (Font: Inter Regular, 32pt, #D4D9E0)                          │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Simplified for appendix use. Positions Expanso as solving a
+// different, more fundamental problem. All fonts >30pt.
+
+
+# Slide 12-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                       Transparent & Predictable Pricing                           │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│      ┌──────────────────────┬───────────────────────┬──────────────────────┐       │
+│      │        SMALL         │         MEDIUM        │        LARGE         │       │
+│      │     (10-50 Nodes)    │     (51-200 Nodes)    │      (201+ Nodes)    │       │
+│      ├──────────────────────┼───────────────────────┼──────────────────────┤       │
+│      │ Starts at $X,XXX     │ Includes Volume       │ Custom Pricing with  │       │
+│      │ per node/year        │ Discount              │ Deepest Discounts    │       │
+│      └──────────────────────┴───────────────────────┴──────────────────────┘       │
+│                                                                                   │
+│                                                                                   │
+│      ✓ Unlimited Data Volume         ✓ 24/7 Enterprise Support                    │
+│      ✓ All Product Features          ✓ Full Implementation Included               │
+│      ✓ Predictable Annual Cost       ✓ Named Technical Account Manager            │
+│      ✓ No Hidden Fees                ✓ Training & Enablement                      │
+│                                                                                   │
+│      Typical Payback Period: 47 Days. Average First-Year ROI: 8.2x                │
+│                     (Font: Inter Regular, 32pt, #D4D9E0)                          │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Focuses on simplicity and predictability. Replaces dense text
+// with a clean, scannable table and checklist. All fonts >30pt.
+
+# Slide 13-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                           Expanso Technical Architecture                          │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│            [Control Plane] ----------------> [Expanso Agents]                     │
+│           (Your VPC/Cloud)                    (At the Source)                     │
+│            • Policy Mgmt                         • Ingest                         │
+│            • Orchestration                       • Filter                         │
+│            • Monitoring                          • Transform                      │
+│                                                    • Govern                       │
+│                                                    • Route                        │
+│                                                                                   │
+│      • DEPLOY ANYWHERE: Cloud, On-Prem, Hybrid, and Edge                          │
+│      • PETABYTE SCALE: Horizontally scalable, stateless agents                    │
+│      • SECURE BY DESIGN: Zero-trust, end-to-end encryption, SOC 2 Type II         │
+│      • HIGHLY AVAILABLE: 99.9% uptime SLA with zero data loss guarantee           │
+│      • LOW LATENCY: Sub-100ms processing for real-time workloads                  │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Radically simplified. A technical user can grasp the
+// core architecture in 15 seconds. Uses keywords from the framework.
+
+# Slide 14-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                           Proven Results Across Industries                        │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│     ┌───────────────────────────┬───────────────────────────┐                     │
+│     │      🏥 HEALTHCARE        │      🛒 E-COMMERCE         │                     │
+│     │ • 72% Splunk cost cut     │ • 58% Databricks cost cut │                     │
+│     │ • $2.52M saved annually   │ • $2.44M saved annually   │                     │
+│     │ • 100% HIPAA compliance   │ • 4x faster ML training   │                     │
+│     │ • 5.6x faster threat      │ • Handled 10x Black       │                     │
+│     │   detection               │   Friday traffic flat     │                     │
+│     └───────────────────────────┴───────────────────────────┘                     │
+│                                                                                   │
+│     ┌───────────────────────────┬───────────────────────────┐                     │
+│     │     🏭 MANUFACTURING      │      🏛️ GOVERNMENT        │                     │
+│     │ • 68% IoT data cost cut   │ • Real-time AI at the     │                     │
+│     │ • $3.1M saved annually    │   edge, disconnected      │                     │
+│     │ • 35% less downtime       │ • 90% bandwidth reduction │                     │
+│     │ • Predictive maintenance  │ • Zero data exfiltration  │                     │
+│     │   accuracy: 65% → 92%     │   incidents               │                     │
+│     └───────────────────────────┴───────────────────────────┘                     │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Grid format is highly scannable. Leads with outcomes.
+// Metrics are prominent. Compliant with font sizes and word fatigue rules.
+
+# Slide 15-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                          Customer-Driven Product Roadmap                          │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│        TODAY                 NEAR-TERM (6-12 MO)           VISION (12+ MO)        │
+│    (Available Now)                                                                │
+│                                                                                   │
+│    • 50+ Connectors      • Snowflake Native App      • Autonomous Data Platform   │
+│    • Full Governance     • Visual Policy Builder     • Self-Optimizing Policies   │
+│    • Petabyte Scale      • Cost Prediction AI        • Unified Data Fabric        │
+│    • Edge Deployment     • 30+ New Connectors        • Edge-Native AI Training    │
+│    • SOC 2 Type II       • ISO 27001                 • Community Policy Hub       │
+│                                                                                   │
+│                                                                                   │
+│            Our roadmap is shaped by our enterprise customers. You get             │
+│            quarterly reviews and direct input into our priorities.                │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Simple, three-column timeline is easy to understand.
+// Focuses on major strategic initiatives. Reinforces customer-centricity.
+
+# Slide 16-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                          Frequently Asked Questions                               │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│      FINANCIAL (CFO/FinOps)             TECHNICAL (CTO/Eng)       SECURITY (CISO) │
+│      • Payback in 47 days (avg)         • Deploys in days,        • SOC 2 Type II   │
+│      • 8.2x first-year ROI              • not months              • GDPR/HIPAA      │
+│      • Predictable per-node cost        • Zero downtime           • Data stays in   │
+│      • No hidden data fees              • Low performance         • your VPC        │
+│                                         • overhead                • E2E Encryption  │
+│                                                                                   │
+│      Our most common question: "What's the catch?"                                │
+│      Answer: There is no catch. It's a fundamentally better architecture.         │
+│      We stop you from paying for data you don't need.                             │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: Persona-based grouping makes information highly accessible.
+// Answers are distilled to their core value. Addresses the "catch" head-on.
+
+# Slide 17-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                     Why Enterprises Trust Expanso                                 │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│                                                                                   │
+│         👥 PROVEN TEAM                      💰 FINANCIAL STABILITY                 │
+│         • Ex-Google (Kubernetes)            • Backed by General Catalyst         │
+│         • Ex-AWS (Kinesis)                  • 3+ years of runway                 │
+│         • Ex-Microsoft (Azure)              • 200% YoY growth                    │
+│                                                                                   │
+│         📈 CUSTOMER TRACTION                 🏆 INDUSTRY RECOGNITION              │
+│         • 50+ Enterprise Customers          • Gartner Cool Vendor                │
+│         • 95% Retention Rate                • Forrester Wave Strong Performer    │
+│         • $100M+ Value Delivered            • SOC 2 Type II Certified            │
+│                                                                                   │
+│                                                                                   │
+│           We are a long-term partner, not a short-term solution.                  │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+// Design Annotation: A four-quadrant layout for quick scanning. Focuses on trust
+// signals. Replaces long bios with powerful keywords (Google, AWS, General Catalyst).
+
+# Slide 18-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│                     Appendix: The Expanso Upstream Data Platform                  │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│      ┌───────────────────────────┬───────────────────────────────────┐            │
+│      │                           │                                   │            │
+│      │     [Architecture Diagram]    │          WHAT EXPANSO DELIVERS        │            │
+│      │   [Sources] -> [EXPANSO] ->   │                                   │            │
+│      │   [Platforms]                 │       💰 CONTROL YOUR DATA              │            │
+│      │                               │       • 50-70% cost reduction         │            │
+│      │                               │       • Intelligent tiering           │            │
+│      │                               │                                   │            │
+│      │                               │       🚀 ACCELERATE YOUR TEAMS        │            │
+│      │                               │       • 90% less firefighting       │            │
+│      │                               │       • 4x faster onboarding          │            │
+│      │                               │                                   │            │
+│      │                               │       🤖 UNLOCK AI/ML                 │            │
+│      │                               │       • Real-time feature engineering │            │
+│      │                               │       • ML-ready, quality data        │            │
+│      └───────────────────────────┴───────────────────────────────────┘            │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
+
+# Slide 19-a:
+┌───────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│             Appendix: FinTech Customer Case Study Deep Dive                       │
+│                       (Font: Inter Semi-Bold, 60pt, #FFFFFF)                      │
+│                                                                                   │
+│       CHALLENGE                                         RESULTS                   │
+│    (Font: Inter Bold, 36pt, #FFFFFF)              (Font: Inter Bold, 36pt, #FFFFFF) │
+│                                                                                   │
+│    • $2.8M annual Snowflake spend               • Snowflake costs cut by 67%      │
+│    • 65% of ingested data never used            • $1.9M saved per year            │
+│    • 6-month data onboarding backlog            • Payback period: 45 days         │
+│    • 60% of engineering time on firefighting    • Data onboarding: 6 mo → 2 wk    │
+│    • PII exposure and SOX compliance risk       • 93% fewer pipeline incidents    │
+│                                                 • 100% PII masking at the source  │
+│                                                                                   │
+│      "Expanso paid for itself in 45 days. Our data team is finally                │
+│      focused on building value, not fighting fires."                              │
+│         — VP of Data Engineering, Fortune 500 FinTech                             │
+│                      (Font: Inter Regular, 32pt, #D4D9E0)                         │
+│                                                                                   │
+└───────────────────────────────────────────────────────────────────────────────────┘
