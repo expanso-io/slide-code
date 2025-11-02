@@ -16,8 +16,8 @@ npm run dev:list         # Same as above
 npm run build:all        # Build all decks
 npm run dev:index        # Preview built decks at http://localhost:3030
 
-# Open a specific deck in dev mode
-npm run dev:deck --deck=2025-11-01-sales-demo
+# Open a specific deck in dev mode (with live reload)
+npm run dev:deck --deck=2025-11-01-expanso-sales
 
 # Build all decks for production
 npm run build:all
@@ -105,12 +105,19 @@ Theme configuration and component library:
 
 ## 🎯 Current Decks
 
-### 2025-11-01 Sales Demo
-**File**: `slides/2025-11-01-sales-demo.md`  
-**Status**: Active  
-**Slides**: 22  
+### 2025-11-01 Expanso Sales Demo ⭐
+**File**: `slides/2025-11-01-expanso-sales.md`
+**Status**: Active
+**Slides**: 10
 
-Comprehensive sales demonstration deck showcasing Expanso's data control platform with customer proof points, industry breadth, and technical architecture.
+Main sales presentation following Guy Kawasaki's 10/20/30 rule. Focuses on cutting cloud costs 50-70% through data control at the source, with real customer results and clear ROI messaging.
+
+### 2025-11-01 Theme Showcase
+**File**: `slides/2025-11-01-sales-demo.md`
+**Status**: Archived
+**Slides**: 22
+
+Complete feature showcase of the Expanso Slidev theme - demonstrates all layouts, components, and design system capabilities.
 
 ## 🛠️ Workflow
 
@@ -191,7 +198,7 @@ Comprehensive sales demonstration deck showcasing Expanso's data control platfor
    - Reduce elements if needed
 3. **Test locally with live reload**:
    ```bash
-   npm run dev:deck --deck=2025-11-01-sales-demo
+   npm run dev:deck --deck=2025-11-01-expanso-sales
    ```
    This opens the deck in dev mode with hot reload (no build needed)
 
@@ -203,7 +210,7 @@ Comprehensive sales demonstration deck showcasing Expanso's data control platfor
 
 ## 📦 Dependencies
 
-- **@slidev/cli** ^0.49.0 - Presentation framework
+- **@slidev/cli** ^0.49.29 - Presentation framework
 - **@slidev/theme-default** ^0.25.0 - Base theme (customized)
 - **Node.js** 20+ - Runtime environment
 
